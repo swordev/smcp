@@ -1,0 +1,100 @@
+{
+  "name": "smcp",
+  "private": true,
+  "homepage": "https://github.com/swordev/smcp.git",
+  "bugs": {
+    "url": "https://github.com/swordev/smcp.git/issues",
+    "email": "juanrgm724@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swordev/smcp.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Juanra GM",
+    "email": "juanrgm724@gmail.com",
+    "url": "https://github.com/juanrgm"
+  },
+  "scripts": {
+    "build": "wireit",
+    "build:test-browser": "pnpm build --filter ./packages/core-browser-test",
+    "build:ts": "wireit",
+    "check": "wireit",
+    "check:eslint": "eslint .",
+    "check:format": "prettier -c .",
+    "clean": "wireit",
+    "clean:ts": "wireit",
+    "clean:wireit": "wireit",
+    "format": "prettier -w .",
+    "test": "wireit",
+    "test:browser": "pnpm test --filter ./packages/core-browser-test",
+    "test:node": "jest",
+    "watch": "tsc --build tsconfig.build.json -w"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.4",
+    "@changesets/cli": "^2.22.0",
+    "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "@tsconfig/node16": "^1.0.2",
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "eslint": "^8.14.0",
+    "husky": "^7.0.4",
+    "jest": "27.5.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-packagejson": "^2.2.17",
+    "prettier-plugin-sort-json": "^0.0.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "wireit": "^0.3.1"
+  },
+  "engines": {
+    "node": ">=16.5.0"
+  },
+  "wireit": {
+    "test": {
+      "dependencies": [
+        "test:node",
+        "test:browser"
+      ]
+    },
+    "clean": {
+      "dependencies": [
+        "clean:ts",
+        "clean:wireit"
+      ]
+    },
+    "clean:ts": {
+      "command": "rimraf packages/*/lib packages/*/dist packages/*/tsconfig.tsbuildinfo"
+    },
+    "clean:wireit": {
+      "command": "rimraf .wireit"
+    },
+    "build": {
+      "dependencies": [
+        "build:ts",
+        "build:test-browser"
+      ]
+    },
+    "build:ts": {
+      "command": "tsc -b tsconfig.build.json --pretty",
+      "clean": "if-file-deleted",
+      "files": [
+        "packages/*/src/**/*.ts",
+        "packages/*/src/tsconfig.json"
+      ],
+      "output": [
+        "packages/*/lib/**",
+        "packages/*/.tsbuildinfo"
+      ],
+      "packageLocks": [
+        "pnpm-lock.yaml"
+      ]
+    }
+  }
+}

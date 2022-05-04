@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["es2021", "DOM"]
+  },
+  "exclude": ["**/temp/", "**/.*/", "**/lib", "**/node_modules"],
+  "extends": "@tsconfig/node16"
+}
