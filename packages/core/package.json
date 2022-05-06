@@ -15,12 +15,6 @@
     "email": "juanrgm724@gmail.com",
     "url": "https://github.com/juanrgm"
   },
-  "exports": {
-    "./*": "./lib/*.js"
-  },
-  "files": [
-    "lib"
-  ],
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
@@ -50,7 +44,21 @@
     "ts-node": "^10.7.0",
     "yaml": "^2.0.1"
   },
+  "publishConfig": {
+    "directory": "lib"
+  },
   "engine": {
     "node": ">=16.0.0"
+  },
+  "x-wspa": {
+    "distDir": "lib",
+    "outFiles": [
+      "lib",
+      "tsconfig.tsbuildinfo"
+    ],
+    "distFiles": [
+      "CHANGELOG.md",
+      "node_modules"
+    ]
   }
 }
