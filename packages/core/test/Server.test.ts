@@ -96,3 +96,26 @@ describe("Server.options.container", () => {
     await server.stop();
   });
 });
+
+describe("Server.options.api", () => {
+  it("resolves constructor", async () => {
+    class Api {
+      get() {
+        return true;
+      }
+    }
+    const server = new Server({
+      container,
+      api: Api,
+    });
+
+    await server.start(0);
+
+    const client = new Client<Api>({
+      url: { port: server.port },
+    });
+
+    expect(await client.api.get()).toBe(true);
+    await server.stop();
+  });
+});

@@ -1,5 +1,5 @@
 import { ConfigsType, DataType } from "./utils/ejson";
-import { getObjectValue, merge } from "./utils/object";
+import { getObjectValue, isClass, merge } from "./utils/object";
 import { parsePath } from "./utils/proxy";
 import {
   MessageType,
@@ -44,7 +44,7 @@ export class ServerController<TApi, TClientKey> {
       const [classLevels, method] = parsePath(path);
       const api = this.options.api;
       const Constructor = getObjectValue(
-        typeof api === "function"
+        typeof api === "function" && !isClass(api)
           ? (api as () => Record<string, unknown>)()
           : (api as Record<string, unknown>),
         classLevels

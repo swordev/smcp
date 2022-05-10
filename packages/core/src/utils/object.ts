@@ -6,6 +6,10 @@ export enum IterationTypeEnum {
   Object,
 }
 
+export function isClass(value: unknown) {
+  return typeof value === "function" && /^\s*class\s+/.test(value.toString());
+}
+
 export function isInstanceObject(
   value: unknown
 ): value is Record<string, unknown> {
