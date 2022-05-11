@@ -105,5 +105,24 @@
         "pnpm-lock.yaml"
       ]
     }
+  },
+  "x-wspa": {
+    "extends": "@wspa/config/auto",
+    "pkgManifest": {
+      "homepage": "https://github.com/swordev/smcp#readme",
+      "bugs": {
+        "url": "https://github.com/swordev/smcp/issues"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/swordev/smcp"
+      },
+      "license": "MIT",
+      "author": {
+        "name": "Juanra GM",
+        "email": "juanrgm724@gmail.com",
+        "url": "https://github.com/juanrgm"
+      }
+    }
   }
 }

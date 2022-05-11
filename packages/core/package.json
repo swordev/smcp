@@ -1,20 +1,6 @@
 {
   "name": "@smcp/core",
   "version": "0.0.3",
-  "homepage": "https://github.com/swordev/smcp#readme",
-  "bugs": {
-    "url": "https://github.com/swordev/smcp/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/swordev/smcp"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Juanra GM",
-    "email": "juanrgm724@gmail.com",
-    "url": "https://github.com/juanrgm"
-  },
   "scripts": {
     "build": "tsc -b",
     "clean": "tsc -b --clean",
@@ -49,16 +35,5 @@
   },
   "engine": {
     "node": ">=16.0.0"
-  },
-  "x-wspa": {
-    "distDir": "lib",
-    "outFiles": [
-      "lib",
-      "tsconfig.tsbuildinfo"
-    ],
-    "distFiles": [
-      "CHANGELOG.md",
-      "node_modules"
-    ]
   }
 }
