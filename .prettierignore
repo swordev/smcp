@@ -1,5 +1,4 @@
 pnpm-lock.yaml
-tsconfig.tsbuildinfo
 # .gitignore
 .history
 .wireit
@@ -7,3 +6,4 @@ node_modules
 coverage
 dist
 lib
+tsconfig.tsbuildinfo
