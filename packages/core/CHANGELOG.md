@@ -1,5 +1,11 @@
 # @smcp/core
 
+## 0.0.4
+
+### Patch Changes
+
+- [`5ba34b6`](https://github.com/swordev/smcp/commit/5ba34b6300b1efe885e3a0ff604c85187666dfa5) Thanks [@juanrgm](https://github.com/juanrgm)! - Update dependencies
+
 ## 0.0.3
 
 ### Patch Changes
