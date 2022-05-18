@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "wireit",
-    "build:test-browser": "pnpm build --filter ./packages/core-browser-test",
+    "build:test-browser": "pnpm --filter @smcp/core-browser-test build",
     "build:ts": "wireit",
     "check": "wireit",
     "check:eslint": "eslint .",
@@ -29,7 +29,7 @@
     "format": "prettier -w .",
     "patch": "wspa patch",
     "test": "wireit",
-    "test:browser": "pnpm test --filter ./packages/core-browser-test",
+    "test:browser": "pnpm --filter @smcp/core-browser-test test",
     "test:node": "jest",
     "watch": "tsc --build tsconfig.build.json -w"
   },
