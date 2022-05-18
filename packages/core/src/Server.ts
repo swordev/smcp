@@ -26,6 +26,7 @@ export type OptionsType<
   logging?: boolean;
   publicPath?: string;
   connectionTokens?: string[];
+  requireConnectionToken?: boolean;
   port?: number;
   address?: string;
   protocols?: { http: boolean; ws: boolean };
@@ -63,7 +64,10 @@ export class Server<
       this.ws = new WebSocketServer({
         noServer: true,
         verifyClient: (info, next) => {
-          if (this.options.connectionTokens) {
+          if (
+            this.options.requireConnectionToken ||
+            this.options.connectionTokens
+          ) {
             const error = this.getConnectionTokenError(
               new URL(info.req.url as string, "file://").searchParams.get(
                 "x-smcp-token"
@@ -207,7 +211,7 @@ export class Server<
 
     const url = new URL(request.url as string, "file://");
 
-    if (this.options.connectionTokens) {
+    if (this.options.requireConnectionToken || this.options.connectionTokens) {
       const token =
         request.headers["x-smcp-token"] ?? url.searchParams.get("x-smcp-token");
       const tokenError = this.getConnectionTokenError(token);

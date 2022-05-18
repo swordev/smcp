@@ -19,7 +19,9 @@ let server!: {
 before(async () => {
   server = {
     normal: await createServer(0),
-    token: await createServer(0, "secret"),
+    token: await createServer(0, {
+      connectionTokens: ["secret"],
+    }),
   };
   await browser.url(server.normal.address);
 });
@@ -158,5 +160,52 @@ describe("smcp", () => {
         }
       }, server.token.instance.port)
     ).toBeTruthy();
+  });
+
+  it("throws require connection token error", async () => {
+    const server = await createServer(0, {
+      requireConnectionToken: true,
+    });
+    expect(
+      await browser.executeAsync(async (port, done) => {
+        const client = new Client({
+          url: { port },
+        });
+        try {
+          await client.api.dummy.returnString();
+          done(true);
+        } catch (error) {
+          done(false);
+        }
+      }, server.instance.port)
+    ).toBeFalsy();
+
+    await server.instance.stop();
+  });
+
+  it("returns string using require connection token", async () => {
+    const connectionToken = "X";
+    const server = await createServer(0, {
+      requireConnectionToken: true,
+      connectionTokens: [connectionToken],
+    });
+    expect(
+      await browser.executeAsync(
+        async ([port, connectionToken], done) => {
+          const client = new Client({
+            url: { port },
+            connectionToken,
+          });
+          try {
+            done(await client.api.dummy.returnString());
+          } catch (error) {
+            done(false);
+          }
+        },
+        [server.instance.port, connectionToken] as const
+      )
+    ).toBe("hello world");
+
+    await server.instance.stop();
   });
 });

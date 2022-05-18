@@ -1,15 +1,16 @@
 import api from "./api";
 import configs from "./configs";
-import { Server } from "@smcp/core/Server";
+import { Server, OptionsType } from "@smcp/core/Server";
 
-export default async function createServer(port = 0, connectionToken?: string) {
+export default async function createServer(
+  port = 0,
+  options: Omit<OptionsType<any, any, any>, "api"> = {}
+) {
   const instance = new Server({
     configs,
     api,
     publicPath: __dirname + "/../../dist",
-    ...(connectionToken && {
-      connectionTokens: [connectionToken],
-    }),
+    ...options,
   });
   await instance.start(port);
   const address = `http://127.0.0.1:${instance.port}`;
