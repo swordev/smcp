@@ -1,5 +1,11 @@
 # @smcp/core
 
+## 0.1.0
+
+### Minor Changes
+
+- [`b919a8c`](https://github.com/swordev/smcp/commit/b919a8cd55966b86a705f11cbde6cbb9911864ba) Thanks [@juanrgm](https://github.com/juanrgm)! - Add `requireConnectionToken` option
+
 ## 0.0.4
 
 ### Patch Changes
