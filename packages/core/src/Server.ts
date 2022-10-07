@@ -21,7 +21,7 @@ export type OptionsType<
   TClientSession,
   TContainer extends DependencyContainer | undefined = undefined
 > = {
-  api: TApi | (() => TApi);
+  api: TApi | (() => Promise<TApi> | TApi);
   configs?: ConfigsType;
   logging?: boolean;
   publicPath?: string;

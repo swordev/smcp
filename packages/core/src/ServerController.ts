@@ -19,9 +19,13 @@ type OnJsonRequestType = (constructor: {
 
 export type OptionsType<TApi> = {
   configs?: ConfigsType;
-  api: TApi | (() => TApi);
+  api: TApi | (() => Promise<TApi> | TApi);
   logging?: boolean;
 };
+
+function isApiCallback<TApi>(api: unknown): api is () => Promise<TApi> {
+  return typeof api === "function" && !isClass(api);
+}
 
 export class ServerController<TApi, TClientKey> {
   protected streams: StreamMapType<TClientKey> = new Map();
@@ -42,13 +46,13 @@ export class ServerController<TApi, TClientKey> {
     try {
       if (!Array.isArray(args)) throw new Error(`Arguments are not array`);
       const [classLevels, method] = parsePath(path);
-      const api = this.options.api;
-      const Constructor = getObjectValue(
-        typeof api === "function" && !isClass(api)
-          ? (api as () => Record<string, unknown>)()
-          : (api as Record<string, unknown>),
-        classLevels
-      );
+      const api = (
+        isApiCallback(this.options.api)
+          ? await this.options.api()
+          : this.options.api
+      ) as Record<string, unknown>;
+      const Constructor = getObjectValue(api, classLevels);
+
       if (typeof Constructor !== "function")
         throw new Error(`Class constructor not found: ${path}`);
       const instance = onInstance

@@ -24,7 +24,7 @@ export type ClientOptionsType = {
 export class Client<TApi> {
   readonly ws: WebSocketController;
   readonly controller: ClientController<
-    TApi extends () => infer TApi ? TApi : TApi
+    TApi extends () => Promise<infer TApi> | infer TApi ? TApi : TApi
   >;
   constructor(readonly options: ClientOptionsType) {
     this.controller = new ClientController({
