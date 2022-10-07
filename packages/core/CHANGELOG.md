@@ -1,5 +1,13 @@
 # @smcp/core
 
+## 0.1.1
+
+### Patch Changes
+
+- [`7172698`](https://github.com/swordev/smcp/commit/71726980be65398b6617cb9ecf778cf746f87d68) Thanks [@juanrgm](https://github.com/juanrgm)! - Allow async callback in `api` option
+
+- [`ad43551`](https://github.com/swordev/smcp/commit/ad43551851b5e08760d69cdc259c3a874e3db138) Thanks [@juanrgm](https://github.com/juanrgm)! - Update dependencies
+
 ## 0.1.0
 
 ### Minor Changes
