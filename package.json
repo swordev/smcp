@@ -28,7 +28,6 @@
     "clean:wireit": "wireit",
     "compose": "wspa compose",
     "format": "prettier -w .",
-    "postinstall": "wspa compose",
     "test": "wireit",
     "test:browser": "pnpm --filter @smcp/core-browser-test test",
     "test:node": "jest",
