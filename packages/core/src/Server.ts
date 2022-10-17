@@ -136,12 +136,15 @@ export class Server<
           useValue: sessionDataObject,
         });
     }
-    await this.options.onJsonRequest?.({
+    const result = await this.options.onJsonRequest?.({
       constructor,
       container: container as TContainer,
       session: sessionDataObject,
     });
-    if (container) {
+
+    if (result !== undefined) {
+      return result;
+    } else if (container) {
       return container.resolve(constructor);
     } else {
       return new constructor();
