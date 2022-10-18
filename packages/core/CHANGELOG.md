@@ -1,5 +1,11 @@
 # @smcp/core
 
+## 0.1.2
+
+### Patch Changes
+
+- [`36a789b`](https://github.com/swordev/smcp/commit/36a789bb1097955ca6b516d49c9ba17e0ee368b3) Thanks [@juanrgm](https://github.com/juanrgm)! - Instance the object with the return of `onJsonRequest`
+
 ## 0.1.1
 
 ### Patch Changes
