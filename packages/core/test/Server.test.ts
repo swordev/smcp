@@ -50,10 +50,11 @@ describe("Server.options.container", () => {
       api: {
         CounterApi,
       },
-      onJsonRequest: ({ container }) =>
+      onJsonRequest: ({ container }) => {
         container.register(CounterData, {
           useValue: counterData,
-        }),
+        });
+      },
     });
     await server.start(0);
 
